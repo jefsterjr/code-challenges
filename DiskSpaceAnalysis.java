@@ -54,14 +54,11 @@ public static void main(String[] args) throws IOException {
                     stack.push(i);
                 }
             } else {
-                Integer peek = stack.peek();
-                if (peek >= chunkNum) {
-                    stack.push(space.get(i) < space.get(peek) ? i : peek);
-
+                 if (stack.peek() >= chunkNum) {
+                    stack.push(space.get(i) < space.get(stack.peek()) ? i : stack.peek());
                 } else {
                     stack.push(i);
-                    int j = chunkNum;
-                    int count = 0;
+                    int j = chunkNum, count = 0;
                     while (count++ < x) {
                         if (space.get(j) < space.get(stack.peek())) {
                             stack.pop();
@@ -72,7 +69,6 @@ public static void main(String[] args) throws IOException {
                 }
                 chunkNum++;
             }
-
         }
        return Collections.max(stack.stream().filter(space::contains).collect(toList()));
     }

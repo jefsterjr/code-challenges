@@ -74,14 +74,5 @@ public static void main(String[] args) throws IOException {
             }
 
         }
-
-
-        List<Integer> maxValues = new ArrayList<>();
-        for(Integer integer : stack) {
-            if(space.contains(integer)){
-                maxValues.add(integer);
-            }
-        }
-        return Collections.max(maxValues);
-
+       return Collections.max(stack.stream().filter(space::contains).collect(toList()));
     }
